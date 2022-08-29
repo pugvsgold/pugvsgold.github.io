@@ -8,7 +8,11 @@ if(mysrc==='images/sample.png')
 {
 	myimage.setAttribute('src','images/sample2.png');
 }
-else
+else if(mysrc==='images/sample.png')
+{
+	myimage.setAttribute('src','images/sample.png');
+}
+else if()
 {
 	myimage.setAttribute('src','images/sample.png');
 }
