@@ -46,19 +46,19 @@ let mybutton = document.querySelector('button');
 function setUserName() {
  let myName = prompt('please enter your name');
  if(!myName) {
-   setUserName();
+   
    } else {
      localStorage.setItem('name', myName);
      myheading.textContent = 'mozilla is cool'+ myName;
    }  
 }
 if(!localStorage.getItem('name')) {
-  setUserName();
+  
 } else {
   let storedName = localStorage.getItem('name');
   myheading.textContent = 'Mozilla is cool, ' + storedName;
 }
 mybutton.onclick = function() {
-  setUserName();
+  
 }
 
