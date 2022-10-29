@@ -46,7 +46,7 @@ loader.load("./assets/plan_noise.glb",function(gltf){
 	function animate() {
 	requestAnimationFrame( animate );
 	//tor.rotation.x += 0.01;
-	root.rotation.y += 0.01;
+	root.rotation.y += 0.001;
 	//gltf.asset.rotation.y += 0.01;
 	controls.update();
 	renderer.render( scene, camera );
