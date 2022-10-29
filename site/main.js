@@ -1,6 +1,7 @@
 
 import * as three from './files/three.js';
 import {GLTFLoader} from './files/GLTFLoader.js';
+import {OrbitControls} from './files/OrbitControls.js';
 const loader = new GLTFLoader();
 
 
@@ -18,6 +19,7 @@ const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
 */
 //new
+const controls = new OrbitControls(camera, render.domElement);
 ///*
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
 const material = new THREE.MeshStandardMaterial({ color: 0x00ff00 });
@@ -33,9 +35,9 @@ scene.add(pointLight);
 camera.position.z = 30;
 camera.position.y = 5;
 camera.rotation.x = -0.1;
+controls.update();
 
-
-loader.load("./assets/The_plan.glb",function(gltf){
+loader.load("./assets/plan_noise.glb",function(gltf){
 	const root = gltf.scene;
 	root.scale.set(2,2,2);
 	root.position.y= -3;
@@ -46,7 +48,7 @@ loader.load("./assets/The_plan.glb",function(gltf){
 	//tor.rotation.x += 0.01;
 	root.rotation.y += 0.01;
 	//gltf.asset.rotation.y += 0.01;
-	
+	controls.update();
 	renderer.render( scene, camera );
 	}
 
