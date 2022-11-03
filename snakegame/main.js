@@ -36,7 +36,7 @@ scene.add(pointLight);
 //*/
 //new
 camera.position.z = 30;
-camera.position.y = 5;
+camera.position.y = 50;
 camera.rotation.x = -0.1;
 controls.update();
 
