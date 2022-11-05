@@ -56,7 +56,7 @@ let eggnos = 0;
 
 
 //let ball = new THREE.Mesh();
-loader.load("./assets/pythonv2.glb",function(gltf){
+loader.load("./assets/pythonv3.glb",function(gltf){
 	const root = gltf.scene;
 	//root.scale.set(1,1,1);
 	//root.position.x= 2;
