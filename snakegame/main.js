@@ -41,6 +41,14 @@ camera.rotation.x = 60;
 controls.update();
 
 
+
+
+let upp = document.querySelector("#up");
+let downn = document.querySelector("#down");
+let leftt = document.querySelector("#left");
+let rightt = document.querySelector("#right");
+
+
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
 }
@@ -321,6 +329,86 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 			d = false;
 			l = false;
 			}
+			
+			}
+			
+			
+		downn.onclick = function(){	
+		if (up != true && dead == false){
+    		if (left==true){
+    		change = true;
+    		//phead.rotation.y+=11/7;
+    		rc = true;
+    		}
+    		else if(right==true){
+    		change = true;
+    		//phead.rotation.y-=11/7;
+    		rc = false;
+    		}
+    		down = true;
+    		up = false;
+    		left = false;
+    		right = false;
+		}	
+			
+			
+		}
+		
+		
+		
+		
+		upp.onclick = function(){	
+		    	if (down != true && dead == false){
+    		if (left==true){
+    		change = true;
+    		//phead.rotation.y-=11/7;
+    		rc = false;
+    		}
+    		else if(right==true){
+    		change = true;
+    		//phead.rotation.y+=11/7;
+    		rc = true;
+    		}
+    		down = false;
+    		up = true;
+    		left = false;
+    		right = false;
+    	
+    		//change = false;
+    		
+    		}
+			
+			
+		}
+		
+		
+		
+		
+		leftt.onclick = function(){
+		
+		if (right != true && dead == false){
+    		if (up==true){
+    		change = true;
+    		//phead.rotation.y+=11/7;
+    		rc=true;
+    		}
+    		else if(down==true){
+    		change = true;
+    		//phead.rotation.y-=11/7;
+    		rc =false;
+    		}
+    	
+       		down = false;
+    		up = false;
+    		left = true;
+    		right = false;
+    	
+    		//change = false;
+    		
+    		}
+		
+		
+		
 		
 		}
 	
@@ -328,8 +416,30 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	
 
 
+		rightt.onclick = function(){
+		if (left != true && dead == false){
+    	    	if (down==true){
+    	    	change = true;
+    		//phead.rotation.y+=11/7;
+    		rc = true;
+    		}
+    		else if(up==true){
+    		change = true;
+    		//phead.rotation.y-=11/7;
+    		rc = false;
+    		}
+        	down = false;
+    		up = false;
+    		left = false;
+    		right = true;
+    		
+    		//change = false;
 	
-	
+    		}
+		
+		
+		
+		}
 	
 	
 	
@@ -368,7 +478,7 @@ loader.load("./assets/platformv2.glb",function(gltf){
 	//renderer.render(scene,camera);
 	});
 let gudds = [];
-loader.load("./assets/gudduv1.glb",function(gltf){
+loader.load("./assets/guddu.glb",function(gltf){
 	const guddu = gltf.scene;
 	guddu.scale.set(1,1,1);
 	guddu.position.set(randx[eggnos]*2,-1, randy[eggnos]*2);
