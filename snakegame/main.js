@@ -9,7 +9,7 @@ const loader = new GLTFLoader();
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
 
-const renderer = new THREE.WebGLRenderer(  );
+const renderer = new THREE.WebGLRenderer( /*{ alpha: true }*/ );
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
 
@@ -75,6 +75,17 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	let up = true, down = false, left = false, right = false;
 	let eggposx = randx[0]*2, eggposy = randy[0]*2;
 	let eggno = 1;
+	let dead = false;
+	let change = false;
+	let rc = true;
+	
+	
+	let u = false;
+	let d = false;
+	let l = false;
+	let r = false;
+	
+	
 	function animate() {
 	requestAnimationFrame( animate );
 	x = x+1;
@@ -91,68 +102,93 @@ loader.load("./assets/pythonv3.glb",function(gltf){
   switch (event.key) {
     case "Down": // IE/Edge specific value
     case "ArrowDown":
-    	if (up != true){
+    	if (up != true && dead == false){
     		if (left==true){
-    		phead.rotation.y+=11/7;
+    		change = true;
+    		//phead.rotation.y+=11/7;
+    		rc = true;
     		}
     		else if(right==true){
-    		phead.rotation.y-=11/7;
+    		change = true;
+    		//phead.rotation.y-=11/7;
+    		rc = false;
     		}
     	down = true;
     	up = false;
     	left = false;
     	right = false;
     	
+    	//change = false;
+    	
     	}
       // Do something for "down arrow" key press.
       break;
     case "Up": // IE/Edge specific value
     case "ArrowUp":
-    	if (down != true){
+    	if (down != true && dead == false){
     		if (left==true){
-    		phead.rotation.y-=11/7;
+    		change = true;
+    		//phead.rotation.y-=11/7;
+    		rc = false;
     		}
     		else if(right==true){
-    		phead.rotation.y+=11/7;
+    		change = true;
+    		//phead.rotation.y+=11/7;
+    		rc = true;
     		}
     	down = false;
     	up = true;
     	left = false;
     	right = false;
+    	
+    	//change = false;
     		
     	}
       // Do something for "up arrow" key press.
       break;
     case "Left": // IE/Edge specific value
     case "ArrowLeft":
+    	if (right != true && dead == false){
     		if (up==true){
-    		phead.rotation.y+=11/7;
+    		change = true;
+    		//phead.rotation.y+=11/7;
+    		rc=true;
     		}
     		else if(down==true){
-    		phead.rotation.y-=11/7;
+    		change = true;
+    		//phead.rotation.y-=11/7;
+    		rc =false;
     		}
-    	if (right != true){
+    	
         down = false;
     	up = false;
     	left = true;
     	right = false;
+    	
+    	//change = false;
     		
     	}
       //root.position.z += 2;// Do something for "left arrow" key press.
       break;
     case "Right": // IE/Edge specific value
     case "ArrowRight":
-    	if (left != true){
+    	if (left != true && dead == false){
     	    	if (down==true){
-    		phead.rotation.y+=11/7;
+    	    	change = true;
+    		//phead.rotation.y+=11/7;
+    		rc = true;
     		}
     		else if(up==true){
-    		phead.rotation.y-=11/7;
+    		change = true;
+    		//phead.rotation.y-=11/7;
+    		rc = false;
     		}
         down = false;
     	up = false;
     	left = false;
     	right = true;
+    	
+    	//change = false;
 
     	}
       //root.position.z -= 2;// Do something for "right arrow" key press.
@@ -203,15 +239,52 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	
 	
 	
+	if ( change == true){
+		if (rc == true){
+		phead.rotation.y+=11/7;
+		
+		} else if(rc == false){
+		phead.rotation.y-=11/7;
+		
+		}
+		
+	change = false;
+		
+	
+	}
+	
+	
+	
+	for (let j = 0; j < arr.length; j++){
+		if (phead.position.x==arr[j].position.x && phead.position.z==arr[j].position.z){
+		
+		dead = true;
+		
+		}
+		
+	
+	
+	}
+	if(phead.position.x>30 || phead.position.z>30 || phead.position.x<-30 || phead.position.z<-30){
+	
+		dead = true;
+	}
+	
+	
+	
+	
+	
+	
+	
 	for (let i = 0; i < arr.length; i++) {
-		if (i==arr.length-1) {
+		if (i==arr.length-1 && dead == false) {
 			arr[0].position.x=phead.position.x;
 			arr[0].position.y=phead.position.y;
 			arr[0].position.z=phead.position.z;
 			arr[0].rotation.y=phead.rotation.y;
 		//console.log(i);
 		}
-		else if (arr.length > 1) {
+		else if (arr.length > 1 && dead == false ) {
 			arr[arr.length-1-i].position.x=arr[arr.length-2-i].position.x;
 			arr[arr.length-1-i].position.y=arr[arr.length-2-i].position.y;
 			arr[arr.length-1-i].position.z=arr[arr.length-2-i].position.z;
@@ -220,16 +293,35 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 		}
 	}
 	
+		if (dead==false){
 			
 	
-		if (up == true){
-		phead.position.z -= 2;
-		} else if (down == true){
-		phead.position.z += 2;
-		} else if (left == true){
-		phead.position.x -= 2;
-		} else if (right ==true){
-		phead.position.x += 2;
+			if (up == true && d == false){
+			phead.position.z -= 2;
+			u = true;
+			d = false;
+			l = false;
+			r = false;
+			} else if (down == true && u == false){
+			phead.position.z += 2;
+			d = true;
+			u = false;
+			l = false;
+			r = false;
+			} else if (left == true && r == false){
+			phead.position.x -= 2;
+			l = true;
+			u = false;
+			d = false;
+			r = false;
+			} else if (right ==true && l == false){
+			phead.position.x += 2;
+			r = true;
+			u = false;
+			d = false;
+			l = false;
+			}
+		
 		}
 	
 	
@@ -276,7 +368,7 @@ loader.load("./assets/platformv2.glb",function(gltf){
 	//renderer.render(scene,camera);
 	});
 let gudds = [];
-loader.load("./assets/guddu.glb",function(gltf){
+loader.load("./assets/gudduv1.glb",function(gltf){
 	const guddu = gltf.scene;
 	guddu.scale.set(1,1,1);
 	guddu.position.set(randx[eggnos]*2,-1, randy[eggnos]*2);
