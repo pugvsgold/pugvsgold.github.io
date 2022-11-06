@@ -48,6 +48,11 @@ let downn = document.querySelector("#down");
 let leftt = document.querySelector("#left");
 let rightt = document.querySelector("#right");
 
+let fulll = document.querySelector("#full");
+
+
+
+
 
 function getRndInteger(min, max) {
   return Math.floor(Math.random() * (max - min + 1) ) + min;
@@ -437,6 +442,25 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	
     		}
 		
+		
+		
+		}
+		
+		
+		fulll.onclick = function(){
+		console.log("fullllllllll")
+		
+  		let elem = document.querySelector("body");
+
+  		if (!document.fullscreenElement) {
+    		elem.requestFullscreen().catch((err) => {
+     		 alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+    		});
+  		} else {
+    		document.exitFullscreen();
+  		}
+		
+
 		
 		
 		}
