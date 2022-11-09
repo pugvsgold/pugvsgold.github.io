@@ -227,20 +227,27 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	}
 	
 	if (left==true && up==true){
-	theta = theta + 0.1;
-	root.rotation.y+=theta;
+	theta = 0.1;
+	//root.rotation.y+=theta;
 	//console.log("trrrr");
 	
 	//up = false;
 	}
 	
 	if (right==true && up == true){
-	theta = theta - 0.1;
-	root.rotation.y+=theta;
+	theta = -0.1;
+	//root.rotation.y+=theta;
 	
 	//console.log("trrrr");
 	//up = false;
 	}
+	
+	
+	root.rotation.y+=theta;
+	
+	
+	
+	
 	console.log(resx);
 	
 	resx = vectz*1;
@@ -277,10 +284,10 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	console.log(vectx);
 	
 	
-	if(theta < 0.0001){
+	if(theta < 0.0001 && theta > -0.0001){
 	theta = 0;
 	}else{
-	theta = theta/2
+	theta = theta/2;
 	}
 	
 	
