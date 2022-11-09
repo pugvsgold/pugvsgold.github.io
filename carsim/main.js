@@ -72,6 +72,9 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	let vermag = 1;
 	let hormag = 0;
 	
+	let val = 1;
+	
+	
 	function animate() {
 	requestAnimationFrame( animate );
 	//tor.rotation.x += 0.01;
@@ -227,7 +230,7 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	}
 	
 	if (left==true && up==true){
-	theta = 0.1;
+	theta = 0.3;
 	//root.rotation.y+=theta;
 	//console.log("trrrr");
 	
@@ -235,7 +238,7 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	}
 	
 	if (right==true && up == true){
-	theta = -0.1;
+	theta = -0.3;
 	//root.rotation.y+=theta;
 	
 	//console.log("trrrr");
@@ -286,8 +289,10 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	
 	if(theta < 0.0001 && theta > -0.0001){
 	theta = 0;
+	val = 1;
 	}else{
-	theta = theta/2;
+	theta = theta/val;
+	val = val + 0.3;
 	}
 	
 	
