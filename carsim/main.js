@@ -276,7 +276,15 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	//console.log(vecty);
 	console.log(vectx);
 	
+	
+	if(theta < 0.0001){
 	theta = 0;
+	}else{
+	theta = theta/2
+	}
+	
+	
+	//theta = 0;
 	
 	
 	//gltf.asset.rotation.y += 0.01;
