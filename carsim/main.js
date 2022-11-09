@@ -75,6 +75,10 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	let val = 1;
 	
 	
+	let speed = 3;
+	
+	
+	
 	function animate() {
 	requestAnimationFrame( animate );
 	//tor.rotation.x += 0.01;
@@ -209,8 +213,8 @@ loader.load("./assets/CARv2.glb",function(gltf){
 
 
 	if (up==true){
-	root.position.z+=vectz;
-	root.position.x+=vectx;
+	root.position.z+=vectz * speed;
+	root.position.x+=vectx * speed;
 	
 	//console.log("trrrr");
 	//up = false;
@@ -220,8 +224,8 @@ loader.load("./assets/CARv2.glb",function(gltf){
 //	root.position.z-=1;
 	
 	
-	root.position.z+=vectz;
-	root.position.x+=vectx;
+	root.position.z-=vectz * speed;
+	root.position.x-=vectx * speed;
 	
 	
 	
@@ -230,7 +234,7 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	}
 	
 	if (left==true && up==true){
-	theta = 0.03;
+	theta = 0.06;
 	//root.rotation.y+=theta;
 	//console.log("trrrr");
 	
@@ -238,12 +242,31 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	}
 	
 	if (right==true && up == true){
-	theta = -0.03;
+	theta = -0.06;
 	//root.rotation.y+=theta;
 	
 	//console.log("trrrr");
 	//up = false;
 	}
+	
+	
+	
+	if (left==true && down==true){
+	theta = -0.06;
+	//root.rotation.y+=theta;
+	//console.log("trrrr");
+	
+	//up = false;
+	}
+	
+	if (right==true && down == true){
+	theta = 0.06;
+	//root.rotation.y+=theta;
+	
+	//console.log("trrrr");
+	//up = false;
+	}
+	
 	
 	
 	root.rotation.y+=theta;
@@ -290,9 +313,13 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	if(theta < 0.00001 && theta > -0.00001){
 	theta = 0;
 	val = 1;
-	}else{
+	}else if (up == true || down == true) {
 	theta = theta/val;
 	val = val + 0.01;
+	} else{
+	theta = 0;
+	val = 1;
+	
 	}
 	
 	
