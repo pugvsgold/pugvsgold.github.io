@@ -37,10 +37,77 @@ camera.position.y = 5;
 camera.rotation.x = -0.1;
 controls.update();
 
-loader.load("./assets/CARv2.glb",function(gltf){
+loader.load("./assets/CARv5.glb",function(gltf){
 	const root = gltf.scene;
+	//const root = full.children[0];
+	//const brw = full.children[1];
+	//const frw = full.children[3];
+	//const blw = full.children[2];
+	//const flw = full.children[4];
+	
+	
+	//const brw = root;
+	//const frw = root;
+	//const blw = root;
+	//const flw = root;
+	
+	
+	//scene.add(flw);
+	/*
+	brw.scale.set(2,2,2);
+	brw.position.y= -3;
+	brw.rotation.y = 11/7;
+	scene.add(brw);
+	
+	
+	
+	
+	frw.scale.set(2,2,2);
+	frw.position.y= -3;
+	
+	frw.rotation.y = 11/7;
+	scene.add(frw);
+	
+	
+	
+	
+	blw.scale.set(2,2,2);
+	blw.position.y= -3;
+	blw.rotation.y = 11/7;
+	scene.add(blw);
+	
+	
+	
+	
+	flw.scale.set(2,2,2);
+	flw.position.y= -3;
+	flw.rotation.y = 11/7;
+	scene.add(flw);
+	
+	
+	
+	
+	
+	flw.position.set(12,-2.5,-1);
+	frw.position.set(12,-2.5,10);
+	blw.position.set(-10,-2.5,-1);
+	brw.position.set(-10,-2.5,10);
+	
+	
+	*/
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	root.scale.set(2,2,2);
-	root.position.y= -3;
+	root.position.y= 30;
+	root.position.set(-9,-1.8,4.5);
+	//root.position.set(0,0,0);
 	root.rotation.y = 11/7;
 	scene.add(root);
 	let up = false;//gltf.asset;
@@ -206,7 +273,25 @@ loader.load("./assets/CARv2.glb",function(gltf){
   event.preventDefault();
 }, true);
 
-
+	
+	
+	//flw.position.set(root.position.x+9,10,root.position.z);
+	//frw.position.set(root.position.x+9,-3,root.position.z);
+	//blw.position.set(root.position.x+9,-3,root.position.z);
+	//brw.position.set(root.position.x+9,-3,root.position.z);
+	
+	
+	//flw.position.set(root.position.x+12,-2.5,root.position.z-1);
+	//frw.position.set(root.position.x+12,-2.5,root.position.z+10);
+	//blw.position.set(root.position.x-10,-2.5,root.position.z-1);
+	//brw.position.set(root.position.x-10,-2.5,root.position.z+10);
+	
+	/*
+	flw.position.set(root.position.x+21,-2.5,root.position.z-5.5);
+	frw.position.set(root.position.x+21,-2.5,root.position.z+5.5);
+	blw.position.set(root.position.x-1,-2.5,root.position.z-5.5);
+	brw.position.set(root.position.x-1,-2.5,root.position.z+5.5);
+	*/
 
 
 
@@ -233,7 +318,7 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	//up = false;
 	}
 	
-	if (left==true && up==true){
+	if (left==true && up==true && down!=true){
 	theta = 0.06;
 	//root.rotation.y+=theta;
 	//console.log("trrrr");
@@ -241,7 +326,7 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	//up = false;
 	}
 	
-	if (right==true && up == true){
+	if (right==true && up == true && down!= true){
 	theta = -0.06;
 	//root.rotation.y+=theta;
 	
@@ -251,7 +336,7 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	
 	
 	
-	if (left==true && down==true){
+	if (left==true && down==true && up != true){
 	theta = -0.06;
 	//root.rotation.y+=theta;
 	//console.log("trrrr");
@@ -259,7 +344,7 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	//up = false;
 	}
 	
-	if (right==true && down == true){
+	if (right==true && down == true && up != true){
 	theta = 0.06;
 	//root.rotation.y+=theta;
 	
@@ -271,6 +356,12 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	
 	root.rotation.y+=theta;
 	
+	/*
+	flw.rotation.y+=theta;
+	frw.rotation.y+=theta;
+	blw.rotation.y+=theta;
+	brw.rotation.y+=theta;
+	*/
 	
 	
 	
@@ -323,6 +414,31 @@ loader.load("./assets/CARv2.glb",function(gltf){
 	}
 	
 	
+	
+	//flw.position.set(root.position.x+9,10,root.position.z);
+	//frw.position.set(root.position.x+9,-3,root.position.z);
+	//blw.position.set(root.position.x+9,-3,root.position.z);
+	//brw.position.set(root.position.x+9,-3,root.position.z);
+	
+	
+	/*
+	flw.position.set(root.position.x+21,-2.5,root.position.z-5.5);
+	frw.position.set(root.position.x+21,-2.5,root.position.z+5.5);
+	blw.position.set(root.position.x-1,-2.5,root.position.z-5.5);
+	brw.position.set(root.position.x-1,-2.5,root.position.z+5.5);
+	*/
+	
+	//flw.position.set(12 + 9,-2.5 + 1.8,-1 - 4.5);
+	//frw.position.set(12 + 9,-2.5 + 1.8,10 - 4.5);
+	//blw.position.set(-10 + 9,-2.5 + 1.8,-1 - 4.5);
+	//brw.position.set(-10 + 9,-2.5 + 1.8,10 - 4.5);
+	
+	
+	//-9,-1.8,4.5
+
+
+
+
 	//theta = 0;
 	
 	
@@ -339,7 +455,7 @@ animate();
 	
 	
 	
-	loader.load("./assets/platform.glb",function(gltf){
+	loader.load("./assets/plain-plane.glb",function(gltf){
 	const root = gltf.scene;
 	root.scale.set(1,1,1);
 	root.position.y= -3;
