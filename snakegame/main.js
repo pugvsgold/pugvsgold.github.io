@@ -474,7 +474,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 		y = 0;
 		eggno = 0;
 		eggnos = 0;
-		phead.position.set(1,1,1);
+		phead.position.set(0,0,0);
 			
 		}
 	
