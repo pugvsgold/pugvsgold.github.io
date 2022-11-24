@@ -51,7 +51,7 @@ let rightt = document.querySelector("#right");
 let fulll = document.querySelector("#full");
 
 
-
+let restart = document.querySelector("#resta");
 
 
 function getRndInteger(min, max) {
@@ -463,6 +463,18 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 
 		
 		
+		}
+		
+		
+		
+		restart.onclick = function(){	
+		for (let k = 0; k < arr.length; k++) {
+			scene.remove(arr[k]);
+			}
+		y = 0;
+		eggno = 0;
+		eggnos = 0;
+			
 		}
 	
 	
