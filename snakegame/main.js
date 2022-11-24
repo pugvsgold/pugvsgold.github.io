@@ -475,6 +475,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 		eggno = 0;
 		eggnos = 0;
 		phead.position.set(0,0,0);
+		dead = false;
 			
 		}
 	
