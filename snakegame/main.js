@@ -77,7 +77,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	const phead = root.children[1];
 	//scene.add(root);
 	//const noi = root.clone();
-	//noi.position.set(0,0,0);
+	//noieggno = 0;
 	scene.add(phead);
 	phead.rotation.y-=11/7
 	//scene.add(pbod);
@@ -474,6 +474,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 		y = 0;
 		eggno = 0;
 		eggnos = 0;
+		phead.position.set(1,1,1);
 			
 		}
 	
