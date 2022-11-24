@@ -242,7 +242,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 		console.log(eggposy);
 		
 		arr[y] = pbod.clone();
-		arr[y].position.set(0,0,0);
+		arr[y].position.set(100,0,0);
 		scene.add(arr[y]);
 		y= y + 1;
 		
