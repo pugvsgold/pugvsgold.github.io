@@ -143,6 +143,7 @@ loader.load("./assets/CARv5.glb",function(gltf){
 	
 	
 	let speed = 1;
+	let ang = 0.06;
 	
 	
 	
@@ -319,7 +320,7 @@ loader.load("./assets/CARv5.glb",function(gltf){
 	}
 	
 	if (left==true && up==true && down!=true){
-	theta = 0.06;
+	theta = ang;
 	//root.rotation.y+=theta;
 	//console.log("trrrr");
 	
@@ -327,7 +328,7 @@ loader.load("./assets/CARv5.glb",function(gltf){
 	}
 	
 	if (right==true && up == true && down!= true){
-	theta = -0.06;
+	theta = -ang;
 	//root.rotation.y+=theta;
 	
 	//console.log("trrrr");
@@ -337,7 +338,7 @@ loader.load("./assets/CARv5.glb",function(gltf){
 	
 	
 	if (left==true && down==true && up != true){
-	theta = -0.06;
+	theta = -ang;
 	//root.rotation.y+=theta;
 	//console.log("trrrr");
 	
@@ -345,7 +346,7 @@ loader.load("./assets/CARv5.glb",function(gltf){
 	}
 	
 	if (right==true && down == true && up != true){
-	theta = 0.06;
+	theta = ang;
 	//root.rotation.y+=theta;
 	
 	//console.log("trrrr");
