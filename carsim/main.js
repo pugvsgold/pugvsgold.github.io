@@ -143,7 +143,7 @@ loader.load("./assets/CARv5.glb",function(gltf){
 	
 	
 	let speed = 1;
-	let ang = 0.06;
+	let ang = 0.03;
 	
 	
 	
