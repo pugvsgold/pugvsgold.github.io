@@ -17,7 +17,7 @@ const geometry = new THREE.SphereGeometry( 1, 32, 16 );
 const material = new THREE.MeshStandardMaterial( { color: 0xc7c86f } );
 const cube = new THREE.Mesh( geometry, material );
 scene.add( cube );
-cube.scale.set(1, 1.3, 1);
+cube.scale.set(1, 1, 1);
 
 //new
 
