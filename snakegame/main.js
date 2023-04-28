@@ -52,6 +52,7 @@ let fulll = document.querySelector("#full");
 
 
 let restart = document.querySelector("#resta");
+let start = document.querySelector("#start");
 
 
 function getRndInteger(min, max) {
@@ -91,7 +92,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	let dead = false;
 	let change = false;
 	let rc = true;
-	
+	let starttt = false;
 	
 	let u = false;
 	let d = false;
@@ -222,8 +223,9 @@ loader.load("./assets/pythonv3.glb",function(gltf){
   event.preventDefault();
 }, true);
 	
-	
-	
+	start.onclick = function(){
+	starttt = true;
+	}
 	
 	
 	
@@ -231,6 +233,8 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	//root.position.x += 2;
 	//pbod.position.z += 2;
 	x=1;
+	
+	if (starttt == true){
 	
 	if (eggposx == phead.position.x && eggposy == phead.position.z ) {
 		eggposx = randx[eggno]*2;
@@ -335,7 +339,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 			l = false;
 			}
 			
-			}
+		}
 			
 			
 		downn.onclick = function(){	
@@ -482,7 +486,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	
 	
 	
-	
+	}
 	
 	}
 	
