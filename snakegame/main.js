@@ -234,6 +234,24 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 	//pbod.position.z += 2;
 	x=1;
 	
+		
+	fulll.onclick = function(){
+		console.log("fullllllllll")
+		
+  		let elem = document.querySelector("body");
+
+  		if (!document.fullscreenElement) {
+    		elem.requestFullscreen().catch((err) => {
+     		 alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
+    		});
+  		} else {
+    		document.exitFullscreen();
+  		}	
+	}
+		
+		
+		
+		
 	if (starttt == true){
 	
 	if (eggposx == phead.position.x && eggposy == phead.position.z ) {
@@ -451,23 +469,7 @@ loader.load("./assets/pythonv3.glb",function(gltf){
 		}
 		
 		
-		fulll.onclick = function(){
-		console.log("fullllllllll")
-		
-  		let elem = document.querySelector("body");
 
-  		if (!document.fullscreenElement) {
-    		elem.requestFullscreen().catch((err) => {
-     		 alert(`Error attempting to enable fullscreen mode: ${err.message} (${err.name})`);
-    		});
-  		} else {
-    		document.exitFullscreen();
-  		}
-		
-
-		
-		
-		}
 		
 		
 		
