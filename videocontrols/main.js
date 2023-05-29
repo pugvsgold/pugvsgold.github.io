@@ -13,7 +13,7 @@ myfunc();
 
 function myfunc() {
 let start = new Date(Date.now());
-let datee = new Date('May 29, 2023 19:15:00');
+let datee = new Date('May 29, 2023 19:17:00');
 
 while ( datee > start) {
 start = new Date(Date.now());
