@@ -1,0 +1,13 @@
+#start{
+position:fixed;
+left: 600px;
+top: 300px;
+font-size:200px;
+opacity: 1;
+}
+
+video {
+    
+    min-width: 100%;
+    min-height: 100%;
+}
