@@ -6,6 +6,15 @@ let month = prompt("Enter month in text: ");
 let date = prompt("Enter date: ");
 
 //let sec = prompt("Enter time in seconds:  ");
+if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
+  // The video element will autoplay with audio.
+} else if (navigator.getAutoplayPolicy("mediaelement") === "allowed-muted") {
+  // Mute audio on video
+  media.muted = true;
+}
+
+
+
 
 let myimage = document.querySelector('button');
 myimage.onclick = function(){
