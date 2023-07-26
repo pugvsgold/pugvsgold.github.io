@@ -28,10 +28,10 @@ console.log(datee);
 while ( datee > start) {
 start = new Date(Date.now());
 console.log("wait");
-if ( datee <= start) {
+}
+
 media.play();
-}
-}
+
 
 
 }
