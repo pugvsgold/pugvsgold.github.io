@@ -4,7 +4,8 @@ let minutes = prompt("Enter time in minutes:  ");
 //let seconds = prompt("Enter time in seconds:  ");
 let month = prompt("Enter month in text: ");
 let date = prompt("Enter date: ");
-
+let differ = 0;
+let diff = document.getElementById("difference");
 //let sec = prompt("Enter time in seconds:  ");
 if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
   // The video element will autoplay with audio.
@@ -25,9 +26,10 @@ let start = new Date(Date.now());
 //let datee = new Date('May 29, 2023 19:15:00');
 let datee = new Date( month + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
 console.log(datee);
+  console.log(differ
 
 start = new Date(Date.now());
-diff = document.getElementById("difference");
+
 differ = datee.getSeconds() - start.getSeconds();
 diff.value = differ;
 
