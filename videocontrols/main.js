@@ -17,6 +17,7 @@ if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
 
 
 let myimage = document.querySelector('button');
+window.addEventListener("DOMContentLoaded", () => {
 myimage.onclick = function(){
 myimage.style.fontSize = "0px";
 myimage.style.opacity = 0;
@@ -25,13 +26,18 @@ let start = new Date(Date.now());
 let datee = new Date( month + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
 console.log(datee);
 
-while ( datee > start) {
 start = new Date(Date.now());
-console.log("wait");
-}
+diff = document.getElementById("difference");
+differ = datee.getSeconds() - start.getSeconds();
+diff.value = differ;
 
+if (datee < start)
+{
 media.play();
-
+}
 
 
 }
+
+});
+
