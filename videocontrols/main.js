@@ -1,45 +1,53 @@
 const media = document.querySelector("video");
-let hours = prompt("Enter time in hours:  ");
-let minutes = prompt("Enter time in minutes:  ");
+const audi = document.querySelector("audio");
+let start = new Date(Date.now());
+let hours = start.getHours();
+let minutes = prompt("Enter time in minutes to start");
 //let seconds = prompt("Enter time in seconds:  ");
-let month = prompt("Enter month in text: ");
-let date = prompt("Enter date: ");
+let month = start.getMonth();
+let date = start.getDate();
 let differ = 0;
 let diff = document.getElementById("difference");
-//let sec = prompt("Enter time in seconds:  ");
-if (navigator.getAutoplayPolicy("mediaelement") === "allowed") {
-  // The video element will autoplay with audio.
-} else if (navigator.getAutoplayPolicy("mediaelement") === "allowed-muted") {
-  // Mute audio on video
-  media.muted = true;
-}
-
-
 
 
 let myimage = document.querySelector('button');
+
+
+
+
 window.addEventListener("DOMContentLoaded", () => {
-myimage.onclick = function(){
-myimage.style.fontSize = "0px";
-myimage.style.opacity = 0;
-let start = new Date(Date.now());
 //let datee = new Date('May 29, 2023 19:15:00');
 let datee = new Date( month + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
 console.log(datee);
-  console.log(differ);
+console.log(differ);
+console.log(start);
+
+myimage.onclick = function(){
+myimage.style.opacity = 0;
+audi.play();
+function myfunc(){
+        
+media.play();
+
+}
+
 
 start = new Date(Date.now());
 
-differ = datee.getSeconds() - start.getSeconds();
+differ = ((datee.getMinutes() * 60 + datee.getSeconds() ) * 1000 + datee.getMilliseconds())- ((start.getMinutes() * 60 + start.getSeconds() ) * 1000 + start.getMilliseconds());
 diff.value = differ;
+console.log(differ);
 
-if (datee < start)
-{
-media.play();
+window.setTimeout(myfunc, differ);
 }
 
+//  const messages = document.createElement("ul");
 
-}
+//  document.body.appendChild(messages);
+ //   const message = document.createElement("li");
+ //   const content = document.createTextNode(differ);
+   // message.appendChild(content);
+   // messages.appendChild(message);
 
 });
 
