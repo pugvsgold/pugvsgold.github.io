@@ -1,6 +1,5 @@
 const media = document.querySelector("video");
 const audi = document.querySelector("audio");
-let start = new Date(Date.now());
 let hours = start.getHours();
 let minutes = prompt("Enter time in minutes to start");
 //let seconds = prompt("Enter time in seconds:  ");
@@ -18,6 +17,8 @@ let myimage = document.querySelector('button');
 window.addEventListener("DOMContentLoaded", () => {
 //let datee = new Date('May 29, 2023 19:15:00');
 let datee = new Date( month + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
+
+let start = new Date(Date.now());
 console.log(datee);
 console.log(differ);
 console.log(start);
