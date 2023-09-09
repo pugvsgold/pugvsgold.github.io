@@ -20,14 +20,15 @@ window.addEventListener("DOMContentLoaded", () => {
 //let datee = new Date('May 29, 2023 19:15:00');
 let datee = new Date( month + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
 
-start = new Date(Date.now());
 console.log(datee);
 console.log(differ);
 console.log(start);
 
 myimage.onclick = function(){
+
 myimage.style.opacity = 0;
 audi.play();
+
 function myfunc(){
         
 media.play();
@@ -35,9 +36,9 @@ media.play();
 }
 
 
-start = new Date(Date.now());
+let now = new Date(Date.now());
 
-differ = ((datee.getMinutes() * 60 + datee.getSeconds() ) * 1000 + datee.getMilliseconds())- ((start.getMinutes() * 60 + start.getSeconds() ) * 1000 + start.getMilliseconds());
+differ = ((datee.getMinutes() * 60 + datee.getSeconds() ) * 1000 + datee.getMilliseconds())- ((now.getMinutes() * 60 + now.getSeconds() ) * 1000 + now.getMilliseconds());
 diff.value = differ;
 console.log(differ);
 
