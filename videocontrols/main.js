@@ -25,7 +25,7 @@ console.log(differ);
 console.log(start);
 
 myimage.onclick = function(){
-
+console.log("clicked");
 myimage.style.opacity = 0;
 audi.play();
 
