@@ -30,7 +30,10 @@ myimage.style.opacity = 0;
 audi.play();
 
 function myfunc(){
-        
+   while (now < datee)
+           {
+                   now = new Date(Date.now());
+           }
 media.play();
 
 }
@@ -42,7 +45,7 @@ differ = ((datee.getMinutes() * 60 + datee.getSeconds() ) * 1000 + datee.getMill
 diff.value = differ;
 console.log(differ);
 
-window.setTimeout(myfunc, differ);
+window.setTimeout(myfunc, 3000);
 }
 
 //  const messages = document.createElement("ul");
