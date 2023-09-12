@@ -30,9 +30,9 @@ myimage.style.opacity = 0;
 audi.play();
 
 function myfunc(){
-   while (now < datee)
+   while (1)
            {
-              if (media.paused == true)
+              if (now < datee)
               {
                    now = new Date(Date.now());
               }
@@ -42,7 +42,6 @@ function myfunc(){
                  break;
               }
            }
-media.play();
 
 }
 
