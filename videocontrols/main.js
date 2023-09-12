@@ -32,7 +32,15 @@ audi.play();
 function myfunc(){
    while (now < datee)
            {
+              if (media.paused == true)
+              {
                    now = new Date(Date.now());
+              }
+              else
+              {
+                 media.play();
+                 break;
+              }
            }
 media.play();
 
