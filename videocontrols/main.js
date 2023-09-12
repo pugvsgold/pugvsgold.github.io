@@ -29,6 +29,9 @@ console.log("clicked");
 myimage.style.opacity = 0;
 audi.play();
 
+
+let now = new Date(Date.now());
+
 function myfunc(){
    while (1)
            {
@@ -46,7 +49,6 @@ function myfunc(){
 }
 
 
-let now = new Date(Date.now());
 
 differ = ((datee.getMinutes() * 60 + datee.getSeconds() ) * 1000 + datee.getMilliseconds())- ((now.getMinutes() * 60 + now.getSeconds() ) * 1000 + now.getMilliseconds());
 diff.value = differ;
