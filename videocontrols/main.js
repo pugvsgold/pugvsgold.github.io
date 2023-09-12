@@ -18,7 +18,7 @@ let myimage = document.querySelector('button');
 
 window.addEventListener("DOMContentLoaded", () => {
 //let datee = new Date('May 29, 2023 19:15:00');
-let datee = new Date( month + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
+let datee = new Date( month + 1 + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
 
 console.log(datee);
 console.log(differ);
@@ -31,6 +31,8 @@ audi.play();
 
 
 let now = new Date(Date.now());
+
+console.log(now);
 
 function myfunc(){
    while (1)
