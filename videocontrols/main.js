@@ -34,8 +34,18 @@ let now = new Date(Date.now());
 
 console.log(now);
 
-function myfunc(){
-   while (1)
+async function myfunc(){
+
+now = new Date(Date.now());
+differ = ((datee.getMinutes() * 60 + datee.getSeconds() ) * 1000 + datee.getMilliseconds())- ((now.getMinutes() * 60 + now.getSeconds() ) * 1000 + now.getMilliseconds());
+
+if (differ >30000)
+	{
+		window.setTimeout(myfunc, 25000);
+	}
+else
+	{
+	while (1)
            {
               if (now < datee)
               {
@@ -47,12 +57,11 @@ function myfunc(){
                  break;
               }
            }
-
+	}
 }
 
 
 
-differ = ((datee.getMinutes() * 60 + datee.getSeconds() ) * 1000 + datee.getMilliseconds())- ((now.getMinutes() * 60 + now.getSeconds() ) * 1000 + now.getMilliseconds());
 diff.value = differ;
 console.log(differ);
 
