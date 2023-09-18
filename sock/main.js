@@ -3,7 +3,7 @@ import { createBoard, playMove } from "./connect4.js";
 function getWebSocketServer() {
   if (window.location.host === "pugvsgold.github.io") {
 	  console.log("perfect")
-    return "wss://web-production-12613.up.railway.app/";
+    return "wss://sockets-production.up.railway.app/";
   } else if (window.location.host === "localhost:8000") {
     return "ws://localhost:8001/";
   } else {
