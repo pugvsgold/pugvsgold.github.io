@@ -54,6 +54,7 @@ else
               else
               {
                  media.play();
+		 audi.pause();
                  break;
               }
            }
