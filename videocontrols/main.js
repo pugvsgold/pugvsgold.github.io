@@ -20,6 +20,12 @@ window.addEventListener("DOMContentLoaded", () => {
 //let datee = new Date('May 29, 2023 19:15:00');
 let datee = new Date( month + 1 + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
 
+
+try {
+  wakeLock = await 
+  navigator.wakeLock.request("screen");
+}
+	
 console.log(datee);
 console.log(differ);
 console.log(start);
