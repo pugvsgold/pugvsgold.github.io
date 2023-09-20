@@ -25,6 +25,9 @@ try {
   wakeLock = await 
   navigator.wakeLock.request("screen");
 }
+finally {
+	console.log("111");
+}
 	
 console.log(datee);
 console.log(differ);
