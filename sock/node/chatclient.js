@@ -14,7 +14,8 @@
 // Get our hostname
 
 //var myHostname = window.location.hostname;
-var myHostname = "sockets-production.up.railway.app";
+//var myHostname = "sockets-production.up.railway.app";
+var myHostname = "localhost";
 if (!myHostname) {
   myHostname = "localhost";
 }
