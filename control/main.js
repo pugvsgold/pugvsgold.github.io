@@ -22,8 +22,7 @@ let datee = new Date( month + 1 + ' ' + date +', 2023 ' + hours + ':' + minutes 
 
 
 try {
-  wakeLock = await 
-  navigator.wakeLock.request("screen");
+  wakeLock = await navigator.wakeLock.request("screen");
 }
 finally {
 	console.log("111");
