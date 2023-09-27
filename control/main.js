@@ -21,14 +21,6 @@ window.addEventListener("DOMContentLoaded", () => {
 let datee = new Date( month + 1 + ' ' + date +', 2023 ' + hours + ':' + minutes + ':00');
 
 
-try {
-  wakeLock = await navigator.wakeLock.request("screen");
-}
-finally {
-	console.log("111");
-}
-	
-
 myimage.onclick = function(){
 console.log("clicked");
 myimage.style.opacity = 0;
