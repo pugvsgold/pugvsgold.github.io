@@ -7,7 +7,7 @@ Game can be played [Here!](https://pugvsgold.github.io/snakegame/) using arrow k
 
 # Car-sim
 
-Game can be played [Here!](https://pugvsgold.github.io/carsim/) using arrow keys
+Game can be played [Here!](https://pugvsgold.github.io/carsim/)
+or [this onion!](http://5m36g3r43e3zrwncdb5hiwly2rzeggvc75rhdnqsadvvkh2vcyftmlad.onion/carsim/) using arrow keys
 
 ![Car-sim](./pics/car-sim.png "car")
-
