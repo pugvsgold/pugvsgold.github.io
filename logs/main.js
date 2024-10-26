@@ -1,6 +1,6 @@
 window.addEventListener("DOMContentLoaded", () => {  
 
-  const websocket = new WebSocket("ws://web-production-96ed5.up.railway.app/");
+  const websocket = new WebSocket("wss://web-production-96ed5.up.railway.app/");
 
   const UA = navigator.userAgent;
   
