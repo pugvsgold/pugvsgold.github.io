@@ -4,6 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const UA = navigator.userAgent;
   const loc = Navigator.geolocation;
+  const uap = new UAParser();
   uap.setUA(UA);
   const result = uap.getResult();
   
