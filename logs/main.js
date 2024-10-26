@@ -19,6 +19,11 @@ window.addEventListener("DOMContentLoaded", () => {
 function myFunction() {
   websocket.send(JSON.stringify({"type": "recv"}));
 }
+const vall = document.getElementById('inputstr').value;
+  document.getElementById("button").onclick = function() {myclick()};
+  function myclick() {
+   websocket.send(JSON.stringify({"type": "send", "value": vall}));
+}
 
 const messages = document.createElement("ul");
 
