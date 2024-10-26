@@ -19,10 +19,11 @@ window.addEventListener("DOMContentLoaded", () => {
 function myFunction() {
   websocket.send(JSON.stringify({"type": "recv"}));
 }
-const vall = document.getElementById('inputstr').value;
-const inpp = document.querySelector('#inputstr').value;
+//const vall = document.getElementById('inputstr').value;
+
   document.getElementById("button").onclick = function() {myclick()};
   function myclick() {
+    const inpp = document.querySelector('#inputstr').value;
    websocket.send(JSON.stringify({"type": "send", "value": inpp}));
 }
 
