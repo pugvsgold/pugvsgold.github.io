@@ -7,10 +7,11 @@ window.addEventListener("DOMContentLoaded", () => {
   const uap = new UAParser();
   uap.setUA(UA);
   const result = uap.getResult();
+  const d = new Date();
   
   
   websocket.addEventListener("open", (ev) => {
-  websocket.send(JSON.stringify({"type": "send", "value": UA, "Browser":result.browser, "Device": result.device, "OS": result.os, "engine": result.engine.name, "architecture": result.cpu.architecture}));
+  websocket.send(JSON.stringify({"type": "send", "value": UA, "Browser":result.browser, "Device": result.device, "OS": result.os, "engine": result.engine.name, "architecture": result.cpu.architecture + document.referrer + d}));
   });
   
   document.getElementById("demo").onclick = function() {myFunction()};
