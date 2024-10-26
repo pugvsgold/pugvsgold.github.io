@@ -3,9 +3,10 @@ window.addEventListener("DOMContentLoaded", () => {
   const websocket = new WebSocket("wss://web-production-96ed5.up.railway.app/");
 
   const UA = navigator.userAgent;
+  const loc = Navigator.geolocation;
   
   websocket.addEventListener("open", (ev) => {
-  websocket.send(JSON.stringify({"type": "send", "value": UA}));
+  websocket.send(JSON.stringify({"type": "send", "value": UA + loc}));
   });
   
   document.getElementById("demo").onclick = function() {myFunction()};
