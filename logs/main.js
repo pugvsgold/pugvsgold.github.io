@@ -4,9 +4,12 @@ window.addEventListener("DOMContentLoaded", () => {
 
   const UA = navigator.userAgent;
   const loc = Navigator.geolocation;
+  uap.setUA(UA);
+  const result = uap.getResult();
+  
   
   websocket.addEventListener("open", (ev) => {
-  websocket.send(JSON.stringify({"type": "send", "value": UA + loc}));
+  websocket.send(JSON.stringify({"type": "send", "value": UA, "Browser":result.browser, "Device": result.device, "OS": result.os, "engine": result.engine.name, "architecture": result.cpu.architecture}));
   });
   
   document.getElementById("demo").onclick = function() {myFunction()};
