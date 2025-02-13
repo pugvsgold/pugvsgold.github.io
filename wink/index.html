@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Emoji Display</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-size: 50px;
+            position: relative;
+        }
+        .emoji-container {
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            width: 100vw;
+            height: 100vh;
+            justify-content: center;
+            align-items: center;
+        }
+        .emoji {
+            position: absolute;
+            font-size: 30px;
+        }
+        .center-emoji {
+            font-size: 600%;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <div class="emoji-container" id="emojiContainer">
+        <div class="center-emoji" id="centerEmoji">😀</div>
+    </div>
+    <script>
+        const emojis = ['😀', '😂', '😍', '🥳', '😎', '🤯', '😇', '🤩', '😜', '😏'];
+        const specs = '😎';
+        const wink = '😉';
+        const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+        document.getElementById("centerEmoji").textContent = wink;
+
+        const container = document.getElementById("emojiContainer");
+        for (let i = 0; i < 100; i++) {
+            const smallEmoji = document.createElement("div");
+            smallEmoji.textContent = specs;
+            smallEmoji.className = "emoji";
+            const angle = (i / 8) * (2 * Math.PI);
+            const radius = 100;
+            smallEmoji.style.left = `${Math.random() *2000}px`;
+            smallEmoji.style.top = `${Math.random() *1000}px`;
+            
+            //smallEmoji.style.left = calc(var(--x) * 1vw)px;
+            //smallEmoji.style.top = calc(var(--y) * 1vh)px;
+            
+            container.appendChild(smallEmoji);
+        }
+    </script>
+</body>
+</html>
+
