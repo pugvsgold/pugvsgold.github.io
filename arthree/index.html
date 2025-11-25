@@ -1,92 +1,151 @@
-<!DOCTYPE html>
-<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-<!-- three.js library -->
-<script src='https://cdn.jsdelivr.net/npm/three@<version>/build/three.module.js'></script>
-<body style='margin : 0px; overflow: hidden; font-family: Monospace;'><div style='position: absolute; top: 10px; width:100%; text-align: center; z-index: 1;'>
-	<a href="https://github.com/AR-js-org/AR.js/" target="_blank">AR.js</a> - three.js camera transform
-	<br/>
-	Contact me any time at <a href='https://twitter.com/nicolocarp' target='_blank'>@nicolocarp</a>
-</div><script>
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Init
-	//////////////////////////////////////////////////////////////////////////////////
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>AR.js + Three.js — Hiro Marker Demo</title>
+  <style>
+    html,body{margin:0;padding:0;height:100%;overflow:hidden;font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial}
+    #info{position:fixed;left:12px;top:12px;background:rgba(0,0,0,0.5);color:#fff;padding:8px 10px;border-radius:8px;z-index:2}
+    #startBtn{margin-top:6px;padding:6px 10px;border-radius:6px;border:none;background:#1e88e5;color:#fff;cursor:pointer}
+  </style>
+</head>
+<body>
+  <div id="info">
+    AR.js + Three.js demo (Hiro marker)
+    <div style="font-size:12px;opacity:0.9">Point your camera at the <strong>Hiro marker</strong> (see notes).</div>
+  </div>
 
-	// init renderer
-	var renderer	= new THREE.WebGLRenderer({
-		antialias: true,
-		alpha: true
-	});
-	renderer.setSize( window.innerWidth, window.innerHeight );
-	renderer.domElement.style.position = 'absolute'
-	renderer.domElement.style.top = '0px'
-	renderer.domElement.style.left = '0px'
-	document.body.appendChild( renderer.domElement );
+  <!-- Three.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <!-- AR.js (Three.js build) -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex.js"></script>
 
-	// array of functions for the rendering loop
-	var onRenderFcts= [];
+  <script>
+  // Basic AR.js + Three.js setup
+  // By default this example uses the HIRO marker. You can print the marker or show it on another screen.
 
-	// init scene and camera
-	var scene	= new THREE.Scene();
+  let scene, camera, renderer;
+  let arToolkitSource, arToolkitContext;
+  let markerRoot;
 
-	//////////////////////////////////////////////////////////////////////////////////
-	//		Initialize a basic camera
-	//////////////////////////////////////////////////////////////////////////////////
+  init();
+  animate();
 
+  function init(){
+    // Renderer
+    renderer = new THREE.WebGLRenderer({antialias:true, alpha:true});
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.domElement.style.position = 'absolute';
+    renderer.domElement.style.top = '0px';
+    renderer.domElement.style.left = '0px';
+    document.body.appendChild(renderer.domElement);
 
-	// Create a camera
-	var camera = new THREE.PerspectiveCamera( 60, window.innerWidth / window.innerHeight, 0.01, 100 );
-	camera.position.z = 3;
-	window.addEventListener( 'resize', function() {
-		camera.aspect = window.innerWidth / window.innerHeight;
-		camera.updateProjectionMatrix();
+    // Scene and camera
+    scene = new THREE.Scene();
 
-		renderer.setSize( window.innerWidth, window.innerHeight );
-	}, false );
+    camera = new THREE.Camera();
+    scene.add(camera);
 
-	//////////////////////////////////////////////////////////////////////////////////
-	//		add an object in the scene
-	//////////////////////////////////////////////////////////////////////////////////
+    // AR Toolkit Source (handles camera stream)
+    arToolkitSource = new THREEx.ArToolkitSource({
+      sourceType: 'webcam', // other options: 'image' or 'video'
+    });
 
-	// add a torus knot
-	var geometry	= new THREE.BoxGeometry(1,1,1);
-	var material	= new THREE.MeshNormalMaterial({
-		transparent : true,
-		opacity: 0.5,
-		side: THREE.DoubleSide
-	});
-	var mesh	= new THREE.Mesh( geometry, material );
-	scene.add( mesh );
+    function onResize(){
+      arToolkitSource.onResizeElement();
+      arToolkitSource.copyElementSizeTo(renderer.domElement);
+      if (arToolkitContext.arController !== null){
+        arToolkitSource.copyElementSizeTo(arToolkitContext.arController.canvas);
+      }
+    }
 
-	var geometry	= new THREE.TorusKnotGeometry(0.3,0.1,64,16);
-	var material	= new THREE.MeshNormalMaterial();
-	var mesh	= new THREE.Mesh( geometry, material );
-	scene.add( mesh );
+    arToolkitSource.init(function onReady(){
+      onResize();
+    });
 
-	onRenderFcts.push(function(delta){
-		mesh.rotation.x += Math.PI*delta
-	})
+    // Handle resize
+    window.addEventListener('resize', function(){
+      onResize();
+    });
 
-	//////////////////////////////////////////////////////////////////////////////////
-	//		render the whole thing on the page
-	//////////////////////////////////////////////////////////////////////////////////
+    // AR Toolkit Context (marker detection)
+    arToolkitContext = new THREEx.ArToolkitContext({
+      cameraParametersUrl: 'https://raw.githack.com/AR-js-org/AR.js/master/three.js/data/camera_para.dat',
+      detectionMode: 'mono'
+    });
 
-	// render the scene
-	onRenderFcts.push(function(){
-		renderer.render( scene, camera );
-	})
+    // initialize it
+    arToolkitContext.init(function onCompleted(){
+      // copy projection matrix to camera
+      camera.projectionMatrix.copy(arToolkitContext.getProjectionMatrix());
+    });
 
-	// run the rendering loop
-	var lastTimeMsec= null
-	requestAnimationFrame(function animate(nowMsec){
-		// keep looping
-		requestAnimationFrame( animate );
-		// measure time
-		lastTimeMsec	= lastTimeMsec || nowMsec-1000/60
-		var deltaMsec	= Math.min(200, nowMsec - lastTimeMsec)
-		lastTimeMsec	= nowMsec
-		// call each update function
-		onRenderFcts.forEach(function(onRenderFct){
-			onRenderFct(deltaMsec/1000, nowMsec/1000)
-		})
-	})
-</script></body>
+    // Marker root object
+    markerRoot = new THREE.Group();
+    scene.add(markerRoot);
+
+    // Use the default HIRO marker pattern (provided by AR.js repo)
+    let markerControls = new THREEx.ArMarkerControls(arToolkitContext, markerRoot, {
+      type: 'pattern',
+      patternUrl: 'https://raw.githack.com/AR-js-org/AR.js/master/three.js/data/patt.hiro',
+      // alternatively, you can use barcode markers or NFT markers
+    });
+
+    // Add a simple three.js object to the marker root: a spinning cube + a ground plane
+    const cubeGeo = new THREE.BoxGeometry(1,1,1);
+    const cubeMat = new THREE.MeshNormalMaterial({transparent:true, opacity:0.9});
+    const cube = new THREE.Mesh(cubeGeo, cubeMat);
+    cube.position.y = 0.5;
+    markerRoot.add(cube);
+
+    // A plane to act as 'ground' so the marker has a base
+    const planeGeo = new THREE.PlaneGeometry(2,2);
+    const planeMat = new THREE.MeshBasicMaterial({color:0xffffff, opacity:0.3, transparent:true});
+    const plane = new THREE.Mesh(planeGeo, planeMat);
+    plane.rotation.x = -Math.PI/2;
+    markerRoot.add(plane);
+
+    // A little ambient light (mostly to show how to add lights if using non-normal materials)
+    const ambient = new THREE.AmbientLight(0xffffff, 0.8);
+    scene.add(ambient);
+
+    // Save cube globally so animate() can spin it
+    window._arDemoCube = cube;
+  }
+
+  function update(){
+    if (arToolkitSource && arToolkitSource.ready !== false){
+      arToolkitContext.update(arToolkitSource.domElement);
+    }
+  }
+
+  function render(){
+    renderer.render(scene, camera);
+  }
+
+  function animate(){
+    requestAnimationFrame(animate);
+    update();
+
+    // spin cube if visible
+    const cube = window._arDemoCube;
+    if (cube){
+      cube.rotation.x += 0.02;
+      cube.rotation.y += 0.03;
+    }
+
+    render();
+  }
+
+  // Helpful notes for testing in browsers
+  // 1) For camera access to work reliably you must serve this file over HTTPS or from localhost.
+  //    e.g. run: python -m http.server 8000  (then open http://localhost:8000/arjs-threejs-demo.html)
+  // 2) Print or display the HIRO marker: https://raw.githack.com/AR-js-org/AR.js/master/three.js/data/hiro.jpg
+  //    (hold it up to your camera, the cube should appear on top of it)
+  // 3) If camera fails on some mobile devices, try using a different browser (Chrome/Firefox) and grant camera permission.
+
+  </script>
+</body>
+</html>
+
